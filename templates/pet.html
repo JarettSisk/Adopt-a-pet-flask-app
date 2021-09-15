@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<img src="{{pet.photo_url}}" alt="{{pet.species}}">
+
+<ul class="pet-info">
+    <li><span class="pet-detail">Name</span>: {{pet.name}}</li>
+    <li><span class="pet-detail">Species</span>: {{pet.species}}</li>
+    {% if pet.age %}
+    <li><span class="pet-detail">Age</span>: {{pet.age}}</li>
+    {% endif %}
+</ul>
+<h2>Edit Pet</h2>
+<form method="POST">
+    <div class="form-group">
+    {{ form.hidden_tag() }}
+        {{form.photo_url.label}}
+        {{form.photo_url}}
+        {{form.notes.label}}
+        {{form.notes}}
+        {{form.available.label}}
+        {{form.available}}
+    <button>Submit Changes</button>
+  </form>
+  <button type="button" class="red-button" onclick="document.location='/pets/{{pet.id}}/delete'">Delete pet</button>
+</div>
+  
+  <br>
+  <a href="/pets">Go Back</a>
+
+{% endblock %}

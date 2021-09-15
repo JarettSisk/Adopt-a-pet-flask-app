@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Adopt A Pet</h1>
+<ul class="pets">
+    {% for pet in pets %}
+    <li>
+        <a href="/pets/{{pet.id}}">
+            <img src="{{pet.photo_url}}" alt="{{pet.species}}">
+        </a>
+        <!-- Check if available -->
+        {% if pet.available == True%}
+            <p><span class="pet-name">{{pet.name}}</span> is <span style="color: rgb(0, 150, 0);">available</span></p>
+        {% else %}
+            <p><span class="pet-name">{{pet.name}}</span> is <span style="color: rgb(233, 52, 52);">not available</span></p>
+        {%endif%}
+    </li>
+    {% endfor %}
+</ul>
+<button onclick="document.location='/pets/add'">Add a Pet</button>
+{% endblock %}

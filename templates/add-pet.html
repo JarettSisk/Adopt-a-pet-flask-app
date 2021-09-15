@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <form method="POST">
+            <div class="form-group">
+            {{ form.hidden_tag() }}
+  
+            {% for field in form if field.widget.input_type != 'hidden'%}
+            
+              {{field.label}}
+              {{field}}
+              {% for err in field.errors %}
+              <small class="form-text text-danger">
+                {{err}}
+              </small>
+              {% endfor %}
+            {% endfor %}
+            <button>Submit</button>
+            <a href="/pets">Go Back</a>
+            </div>
+          </form>
+
+{% endblock %}
